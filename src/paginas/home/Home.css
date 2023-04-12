@@ -1,0 +1,9 @@
+.titulo{
+    color: rgb(243, 26, 62);
+    text-align: center;
+}
+
+.img{
+    display: block;
+    margin: 0 auto;
+}
