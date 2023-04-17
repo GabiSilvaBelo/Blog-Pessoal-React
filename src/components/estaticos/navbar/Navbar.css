@@ -6,3 +6,8 @@
     cursor: pointer;
     color: white;
 }
+
+.navbar {
+    height: 100%;
+    margin: 0;
+  }
