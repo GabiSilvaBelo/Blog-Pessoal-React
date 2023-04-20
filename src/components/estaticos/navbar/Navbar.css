@@ -1,13 +1,53 @@
-.text-decorator-none{
-    text-decoration: none;
+.appBar {
+  background-color: rgb(0, 0, 0);
+  margin-bottom: 0px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
-.cursor{
-    cursor: pointer;
-    color: white;
+.title {
+  margin-right: auto;
+  text-align: left;
 }
 
-.navbar {
-    height: 100%;
-    margin: 0;
-  }
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(0, 0, 0);
+}
+
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 64px;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.button-link {
+  position: relative;
+}
+
+.button-link:hover::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 2px;
+  background-color: white;
+}

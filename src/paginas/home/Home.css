@@ -1,18 +1,29 @@
-.caixa{
-    background-color: #3F51B5;
+.caixa {
+  background-color: black;
+  background-image: url('/src/paginas/home/desktop-wallpaper-beyonce-2020-beyonce-lemonade333.jpg');
+  background-size: auto;
+  /* ajusta a imagem para cobrir toda a área da caixa */
+  background-position: center top;
+  /* centraliza a imagem de fundo */
+  height: 150vh;
+  /* define a altura da caixa como 100% da altura da tela */
 }
 
-.titulo{
-   color: white !important;
-   font-weight: bold !important;
+.titulo {
+  color: white;
 }
 
-.botao{
-    border-color: white !important;
-    background-color: #3F51B5;
-    color: white !important;
+.botao {
+  color: white;
+  border-color: white;
 }
 
-.postagens{
-    background-color: white;
+.postagens {
+  margin-top: 50px;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 30px;
+}
+
+.home {
+  height: 100%;
 }
