@@ -35,7 +35,7 @@ function Login() {
                 }
             }, [token])
 
-        async function onSubmit(e: ChangeEvent<HTMLFormElement>){
+        async function logar(e: ChangeEvent<HTMLFormElement>){
             e.preventDefault();
             try{
                 await login(`/usuarios/logar`, userLogin, setToken)
@@ -47,10 +47,10 @@ function Login() {
         }
 
     return (
-        <Grid container direction='row' justifyContent='center' alignItems='center'>
+        <Grid container direction='row' justifyContent='center' alignItems='center' color={'black'}>
             <Grid alignItems='center' xs={6}>
                 <Box paddingX={20}>
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={logar}>
                         <Typography variant='h3' gutterBottom color='textPrimary' component='h3' align='center' className='textos1'>Entrar</Typography>
                         <TextField value={userLogin.usuario} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='usuario' label='usuário' variant='outlined' name='usuario' margin='normal' fullWidth />
                         <TextField value={userLogin.senha} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='senha' label='senha' variant='outlined' name='senha' margin='normal' type='password'fullWidth />
