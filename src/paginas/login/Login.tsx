@@ -1,15 +1,17 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Grid, Typography, TextField, Button } from '@material-ui/core';
-import {Box} from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import useLocalStorage from 'react-use-localstorage';
+import {Box} from '@mui/material';
 import { login } from '../../services/Service';
 import UserLogin from '../../models/UserLogin';
 import './Login.css';
+import { useDispatch } from 'react-redux';
+import { addToken } from "../../store/tokens/actions";
 
 function Login() {
     let navigate = useNavigate();
-    const [token, setToken] = useLocalStorage('token');
+    const dispatch = useDispatch();
+    const [token, setToken] = useState('');
     const [userLogin, setUserLogin] = useState<UserLogin>(
         {
             id: 0,
@@ -31,11 +33,12 @@ function Login() {
 
             useEffect(()=>{
                 if(token != ''){
+                    dispatch(addToken(token));
                     navigate('/home')
                 }
             }, [token])
 
-        async function logar(e: ChangeEvent<HTMLFormElement>){
+        async function onSubmit(e: ChangeEvent<HTMLFormElement>){
             e.preventDefault();
             try{
                 await login(`/usuarios/logar`, userLogin, setToken)
@@ -47,10 +50,10 @@ function Login() {
         }
 
     return (
-        <Grid container direction='row' justifyContent='center' alignItems='center' color={'black'}>
+        <Grid container direction='row' justifyContent='center' alignItems='center'>
             <Grid alignItems='center' xs={6}>
                 <Box paddingX={20}>
-                    <form onSubmit={logar}>
+                    <form onSubmit={onSubmit}>
                         <Typography variant='h3' gutterBottom color='textPrimary' component='h3' align='center' className='textos1'>Entrar</Typography>
                         <TextField value={userLogin.usuario} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='usuario' label='usuário' variant='outlined' name='usuario' margin='normal' fullWidth />
                         <TextField value={userLogin.senha} onChange={(e:ChangeEvent<HTMLInputElement>) => updatedModel(e)} id='senha' label='senha' variant='outlined' name='senha' margin='normal' type='password'fullWidth />
