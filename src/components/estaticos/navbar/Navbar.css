@@ -1,3 +1,15 @@
+.AppBar {
+  background-color: #000000 !important;
+  height: 60px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  background-color: #000000;
+}
 .cursor{
   cursor: pointer;
   color: white;
@@ -5,4 +17,16 @@
 
 .text-decorator-none{
   text-decoration: none;
+}
+
+.cursor:hover {
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  border-bottom: 2px solid white;
+}
+
+.cursor-no-underline:hover {
+  cursor: pointer;
+  color: white;
 }

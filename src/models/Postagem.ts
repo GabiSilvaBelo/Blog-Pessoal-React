@@ -1,10 +1,10 @@
-import Tema from './Tema'
+import Temas from './Temas'
 
 interface Postagem{
     id: number;
     titulo: string;
     texto: string;
-    tema?: Tema| null
+    temas?: Temas| null
 }
 
 export default Postagem;

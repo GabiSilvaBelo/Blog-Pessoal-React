@@ -1,10 +1,10 @@
 import React from 'react'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
-import { Box, Modal } from '@mui/material'
-import {Button } from "@material-ui/core"
+import {Button} from "@material-ui/core";
+import {Box, Modal} from '@mui/material';
 import CloseIcon from '@material-ui/icons/Close';
 import './ModalPostagem.css';
-import CadastroPost from '../cadastroPost/CadastroPost';
+import CadastroPost from '../cadastroPostagem/CadastroPostagem';
 
 
 function getModalStyle() {

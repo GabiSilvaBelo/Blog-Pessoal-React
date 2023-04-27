@@ -1,12 +1,13 @@
 import React, { ChangeEvent, useEffect, useState } from 'react'
-import { Container, Typography, TextField, Button, Select, InputLabel, MenuItem, FormControl, FormHelperText } from "@material-ui/core"
-import './CadastroPost.css';
-import {useNavigate, useParams } from 'react-router-dom'
-import Tema from '../../../models/Tema';
+import { Container, Typography, TextField, Button, Select, InputLabel, MenuItem, FormControl, FormHelperText } from "@material-ui/core";
+import './CadastroPostagem.css';
+import { useNavigate, useParams } from 'react-router-dom';
+import Tema from '../../../models/Temas';
 import Postagem from '../../../models/Postagem';
 import { busca, buscaId, post, put } from '../../../services/Service';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
+import { toast } from 'react-toastify';
 
 function CadastroPost() {
     let navigate = useNavigate();
@@ -18,7 +19,16 @@ function CadastroPost() {
 
     useEffect(() => {
         if (token == "") {
-            alert("Você precisa estar logado")
+            toast.error('Você precisa estar logado', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
             navigate("/login")
 
         }
@@ -33,13 +43,13 @@ function CadastroPost() {
         id: 0,
         titulo: '',
         texto: '',
-        tema: null
+        temas: null
     })
 
     useEffect(() => { 
         setPostagem({
             ...postagem,
-            tema: tema
+            temas: tema
         })
     }, [tema])
 
@@ -51,7 +61,7 @@ function CadastroPost() {
     }, [id])
 
     async function getTemas() {
-        await busca("/tema", setTemas, {
+        await busca("/temas", setTemas, {
             headers: {
                 'Authorization': token
             }
@@ -71,7 +81,7 @@ function CadastroPost() {
         setPostagem({
             ...postagem,
             [e.target.name]: e.target.value,
-            tema: tema
+            temas: tema
         })
 
     }
@@ -80,35 +90,44 @@ function CadastroPost() {
         e.preventDefault()
 
         if (id !== undefined) {
-            try {
-                await put(`/postagens`, postagem, setPostagem, {
-                    headers: {
-                        'Authorization': token
-                    }
-                })
-                alert('Postagem atualizada com sucesso');
-            } catch (error) {
-                alert("Erro ao atualizar, verifique os campos")
-            }
-
+            put(`/postagens`, postagem, setPostagem, {
+                headers: {
+                    'Authorization': token
+                }
+            })
+            toast.success('Postagem atualizada com sucesso', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
         } else {
-            try {
-                await post(`/postagens`, postagem, setPostagem, {
-                    headers: {
-                        'Authorization': token
-                    }
-                })
-                alert('Postagem cadastrada com sucesso');
-            } catch (error) {
-                alert("Erro ao cadastrar, verifique os campos")
-            }
+            post(`/postagens`, postagem, setPostagem, {
+                headers: {
+                    'Authorization': token
+                }
+            })
+            toast.success('Postagem cadastrada com sucesso', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                theme: "colored",
+                progress: undefined,
+            });
         }
         back()
 
     }
 
     function back() {
-        navigate('/posts')
+        navigate('/postagens')
     }
 
     return (

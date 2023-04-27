@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import { Card, CardActions, CardContent, Button, Typography} from '@material-ui/core';
+import {Card, CardActions, CardContent, Button, Typography} from '@material-ui/core';
 import {Box} from '@mui/material';
 import './DeletarTema.css';
-import {useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { buscaId, deleteId } from '../../../services/Service';
-import Tema from '../../../models/Tema';
+import Tema from '../../../models/Temas';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../../store/tokens/tokensReducer';
-
+import { toast } from 'react-toastify';
+import Temas from '../../../models/Temas';
 
 function DeletarTema() {
     let navigate = useNavigate();
@@ -15,11 +16,20 @@ function DeletarTema() {
     const token = useSelector<TokenState, TokenState["tokens"]>(
       (state) => state.tokens
     );
-    const [tema, setTema] = useState<Tema>()
+    const [temas, setTema] = useState<Temas>()
 
     useEffect(() => {
         if (token == "") {
-            alert("Você precisa estar logado")
+          toast.error('Você precisa estar logado', {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "colored",
+            progress: undefined,
+            });
             navigate("/login")
     
         }
@@ -32,7 +42,7 @@ function DeletarTema() {
     }, [id])
 
     async function findById(id: string) {
-        buscaId(`/tema/${id}`, setTema, {
+        buscaId(`/temas/${id}`, setTema, {
             headers: {
               'Authorization': token
             }
@@ -41,12 +51,21 @@ function DeletarTema() {
 
         function sim() {
           navigate('/temas')
-            deleteId(`/tema/${id}`, {
+            deleteId(`/temas/${id}`, {
               headers: {
                 'Authorization': token
               }
             });
-            alert('Tema deletado com sucesso');
+            toast.success('Tema deletado com sucesso', {
+              position: "top-right",
+              autoClose: 2000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: false,
+              theme: "colored",
+              progress: undefined,
+              });
           }
         
           function nao() {
@@ -63,7 +82,7 @@ function DeletarTema() {
                 Deseja deletar o Tema:
               </Typography>
               <Typography color="textSecondary">
-                {tema?.descricao}
+                {temas?.descricao}
               </Typography>
             </Box>
           </CardContent>

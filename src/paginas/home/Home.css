@@ -1,5 +1,11 @@
-.caixa{
-  background-color: #3F51B5;
+.caixa {
+  background-color: #0a0a0a;
+  width: 500px;
+  height: 500px;
+  background-image: url(/src/paginas/home/desktop-wallpaper-beyonce-2020-beyonce-lemonade333.jpg);
+  background-size: cover;
+  background-position: center top;
+  margin: 0;
 }
 
 .titulo{
