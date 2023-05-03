@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Typography, Grid, Button } from '@material-ui/core';
 import ModalPostagem from '../../components/postagens/modalPostagem/ModalPostagem';
-import TabPostagem from '../../components/postagens/tabPostagem/TabPostagem';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux';
 import { TokenState } from '../../store/tokens/tokensReducer';
@@ -52,7 +51,6 @@ function Home() {
                 </Grid>
              </Grid>
             <Grid xs={12} className='postagens'>
-                <TabPostagem />
             </Grid>
         </>
     );
